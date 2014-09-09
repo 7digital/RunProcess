@@ -23,26 +23,12 @@ namespace RunProcess
 		int _lastExitCode;
 
 		/// <summary>
-		/// Returns true if the host operating system can run
-		/// ProcessHost. If false, trying to create a new ProcessHost
-		/// will result in an exception
-		/// </summary>
-		public static bool HostIsCompatible()
-		{
-			var isWin32 = Environment.OSVersion.Platform == PlatformID.Win32NT;
-			var isModern = Environment.OSVersion.Version.Major >= 6;
-			return (isWin32 && isModern);
-		}
-
-		/// <summary>
 		/// Create a new process wrapper with an executable path and wroking directory.
 		/// </summary>
 		/// <param name="executablePath">Path to executable</param>
 		/// <param name="workingDirectory">Starting directory for executable. May be left empty to inherit from parent</param>
 		public ProcessHost(string executablePath, string workingDirectory)
 		{
-			if (!HostIsCompatible()) throw new NotSupportedException("The host operating system is not compatible");
-
 			_executablePath = executablePath;
 			_workingDirectory = DefaultToCurrentIfEmpty(workingDirectory);
 

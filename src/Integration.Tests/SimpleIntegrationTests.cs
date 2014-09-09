@@ -13,12 +13,6 @@ namespace Integration.Tests
 	{
 		readonly TimeSpan one_second = TimeSpan.FromSeconds(1);
 
-		[TestFixtureSetUp]
-		public void is_compatible_windows()
-		{
-			Assert.That(ProcessHost.HostIsCompatible(), "Host operating system can't run these tests");
-		}
-
 		[Test, Explicit("Requires users to be available")]
 		[TestCase("devvirtual-pc", "exampleUser", "exampleUser")]
 		public void can_impersonate_another_user (string domain, string user, string password)
